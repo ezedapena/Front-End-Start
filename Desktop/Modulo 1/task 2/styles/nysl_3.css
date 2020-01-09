@@ -1,0 +1,84 @@
+*{
+	margin: 0px;
+	font-family: cursive;
+	font-variant: small-caps;
+}
+h1{
+	font-size: 50px;
+}
+h2{
+	text-align: center;
+}
+main{
+	margin: 0px 5vw 0px 0.6vw;
+	padding: 3px 3px 60px 3px;
+	width: 58vw;
+	border: 2px dashed black;
+}
+#imagen1{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	background-image: url("../images/messi.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 38vw;
+	height: 100vh;
+	border: solid black;
+}
+#logo {
+	position: absolute;
+	top: 5vh;
+	right: 20vw;
+	width: 17%;
+	z-index: 2;
+}
+nav{
+	display: flex;
+	width: 58.1vw;
+}
+
+.link{   /*flex */
+	display: flex;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	padding: 3px 10px 3px 10px;
+	margin: 10px 25px 10px 25px;
+	background-color: #61F03399;
+	border: 4px ridge black;
+	float: left;
+	margin-right: 2px;
+}
+
+#div1{
+	margin-left: 2px;
+	border-color: green;
+	border: 4px solid;
+	width: 58.1vw;
+	float: bottom;
+	background: white;
+}
+header{
+	background-color: #61F03399;
+}
+main div{
+	background-color: #FFFFFF88;
+	width: 58vw;
+	position: relative;
+	margin-top: 50px
+}
+
+
+#contact{
+	font-size: x-large;
+}
+
+body{
+		background-image: url("../images/pasto.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.dates{
+	font-size: 20px;
+}

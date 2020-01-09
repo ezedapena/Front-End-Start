@@ -1,0 +1,51 @@
+*{
+	margin: 0px;
+	font-family: cursive;
+}
+h2{
+	text-align: center;
+}
+#imagen1{
+	background-image: url("../images/design1_image1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 40vh;
+}
+#div1{
+	border-color: black;
+	border: 4px solid;
+	float: bottom;
+	background: white;
+}
+nav{
+	position: absolute;
+	top: 5vh;
+	right: 0vw;
+}
+main div{
+	position: relative;
+	left: 15vw;
+}
+
+.link{
+	padding: 3px 5px 3px 5px;
+	margin: 10px;
+	background-color: blue;
+	border: 4px solid black;
+	float: left;
+	margin-right: 2px;
+}
+.link > *{
+		color: white;
+
+}
+
+#logo {
+	position: absolute;
+	top: 55vh;
+	left: 1vw;
+	width: 10%;
+}
+#main{
+	background-color: green;
+}
