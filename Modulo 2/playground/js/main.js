@@ -94,7 +94,6 @@ showPosition(array,index)
 
 console.log("---Exercise 6---")//Imprime los valores que se repiten
 
- // INVESTIGAR HASTA SACARLE LA FICHA PIOLA
 function repeatedNumbers (array){
     let pushedArray = []
     for(var i = 0 ; i < array.length ; i++ ){
@@ -107,3 +106,38 @@ function repeatedNumbers (array){
     }
 }
 repeatedNumbers(array)
+
+console.log("---Exercise 7---") //Juntar un array de string en una variable string
+
+myColor = ["Red", "Green", "White", "Black"]
+function joinString (array){
+    let acum = ""
+    for (let i = 0 ; i < array.length ; i++){
+    acum = acum + array[i] + " "
+    }
+    console.log(acum)
+}
+joinString(myColor)
+
+console.log("-------JavaScript String Functions-------")
+console.log("---Exercise 1---")
+function reverseString(string){
+    var reversed = ''
+    for ( let i = string.length - 1 ; i >=0 ; i--){
+        reversed += string[i]
+    }
+    console.log( string + " / " + reversed)
+}
+reverseString('Lorem Impsum')
+
+
+console.log("---Exercise 2---")
+function orderAlphabetically(string){
+    string.split("")
+    console.log(string)
+}
+orderAlphabetically('Lorem Impsum')
+
+
+
+console.log("---Exercise 3---")
