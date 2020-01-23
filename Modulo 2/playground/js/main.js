@@ -1,8 +1,10 @@
+num = 886123715
+text = "Art is worth the pain"
 console.log("Starting javascript...");
 console.log("-------JavaScripts Basics-------")
 console.log("---Exercise 1---"); //Muestra nombre
 var myName = "Ezequiel Dapena";
-console.log(name);
+console.log(myName);
 
 console.log("---Exercise 2---"); //Muestra edad
 var myAge = 19;
@@ -26,7 +28,7 @@ if (myAge < ignasiAge) {
     if (myAge > ignasiAge) {
         console.log("Ignasi is youger than you")
     } else {
-    console.log("You have the same age as Ignasi")    
+        console.log("You have the same age as Ignasi")    
     }
 }
 console.log("-------JavaScrips Array Functions-------")
@@ -88,7 +90,11 @@ console.log("---Exercise 5---")//Imprime en valor del array en la posicion index
 var array = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100,23,6,6,6,6];
 var index = 1;
 function showPosition(array,index){
-    console.log("The number of the array in the index position is: " + array[index]);
+    if ( index >= array.length ){
+        console.log('The number of the array in the index position is: "undefined"')
+    }else{
+        console.log("The number of the array in the index position is: " + array[index]);
+    }  
 }
 showPosition(array,index)
 
@@ -111,33 +117,52 @@ console.log("---Exercise 7---") //Juntar un array de string en una variable stri
 
 myColor = ["Red", "Green", "White", "Black"]
 function joinString (array){
-    let acum = ""
-    for (let i = 0 ; i < array.length ; i++){
-    acum = acum + array[i] + " "
-    }
-    console.log(acum)
+    console.log('"' + array.join('","') + '"' )
 }
 joinString(myColor)
 
 console.log("-------JavaScript String Functions-------")
 console.log("---Exercise 1---")
-function reverseString(string){
+function reverseString(num){
+    num = num.toString()
     var reversed = ''
-    for ( let i = string.length - 1 ; i >=0 ; i--){
-        reversed += string[i]
+    for ( let i = num.length - 1 ; i >=0 ; i--){
+        reversed += num[i]
     }
-    console.log( string + " / " + reversed)
+    console.log( num + " / " + reversed)
 }
-reverseString('Lorem Impsum')
+reverseString(num)
 
 
 console.log("---Exercise 2---")
 function orderAlphabetically(string){
-    string.split("")
-    console.log(string)
+    let splittedString = string.split("").sort().join("")
+    console.log(splittedString)
 }
-orderAlphabetically('Lorem Impsum')
-
-
+orderAlphabetically(text)
 
 console.log("---Exercise 3---")
+function capitalize(string){
+    let capitalized = string.split(" ")
+    for (let i = 0 ; i < capitalized.length ; i++){
+       capitalized[i] =  capitalized[i].charAt(0).toUpperCase() + capitalized[i].substring(1)
+    }
+     capitalized = capitalized.join(" ")
+    console.log("Original text: " + string)
+    console.log("Capitalized text: " + capitalized)
+}
+capitalize('prince of persia')
+
+console.log("---Exercise 4---")
+function showLongestWord(string){
+    let splittedWord = string.split(" ")
+    let longerWord = splittedWord[0]
+    for ( let i = 1 ; i < splittedWord.length ; i++){
+        if (splittedWord[i].length > longerWord.length ){
+            longerWord = splittedWord[i]
+        }
+    }
+    console.log("The longer word of the text is: " + longerWord)
+}
+showLongestWord(text)
+
