@@ -1,5 +1,5 @@
 num = 886123715
-text = "Art is worth the pain"
+text = "Art is worth the pain worth fourr"
 console.log("Starting javascript...");
 console.log("-------JavaScripts Basics-------")
 console.log("---Exercise 1---"); //Muestra nombre
@@ -158,11 +158,17 @@ function showLongestWord(string){
     let splittedWord = string.split(" ")
     let longerWord = splittedWord[0]
     for ( let i = 1 ; i < splittedWord.length ; i++){
-        if (splittedWord[i].length > longerWord.length ){
+        if (splittedWord[i].length > longerWord.length )
             longerWord = splittedWord[i]
+    }
+    let pushedArray = []
+    pushedArray.push(longerWord)
+    for ( let i = 1 ; i < splittedWord.length ; i++){
+        if(splittedWord[i].length == longerWord.length && splittedWord[i] != pushedArray[0] ){
+            pushedArray.push(splittedWord[i])
         }
     }
-    console.log("The longer word of the text is: " + longerWord)
+
+    console.log("The longer word of the text is: " + pushedArray)
 }
 showLongestWord(text)
-
