@@ -154,21 +154,31 @@ function capitalize(string){
 capitalize('prince of persia')
 
 console.log("---Exercise 4---")
-function showLongestWord(string){
-    let splittedWord = string.split(" ")
-    let longerWord = splittedWord[0]
-    for ( let i = 1 ; i < splittedWord.length ; i++){
-        if (splittedWord[i].length > longerWord.length )
-            longerWord = splittedWord[i]
-    }
-    let pushedArray = []
-    pushedArray.push(longerWord)
-    for ( let i = 1 ; i < splittedWord.length ; i++){
-        if(splittedWord[i].length == longerWord.length && splittedWord[i] != pushedArray[0] ){
-            pushedArray.push(splittedWord[i])
-        }
-    }
+function longestWord(string)
+{
+	let splittedWord = string.split(" ");
+	let longest = splittedWord[0]
+    let wordArr = [] 
+    wordArr[0] = longest
 
-    console.log("The longer word of the text is: " + pushedArray)
+	for(let i=1; i < splittedWord.length; i++)
+	{
+		if( splittedWord[i].length  > longest.length )
+		{
+			longest = splittedWord[i];
+			wordArr = []; //reinicio el vector
+			wordArr.push(longest);
+		}
+		else
+		{
+			if((wordArr.indexOf(splittedWord[i]) == -1) && (wordArr[0].length == splittedWord[i].length))
+			{
+                
+				wordArr.push(splittedWord[i]);
+			}
+
+		}
 }
-showLongestWord(text)
+console.log("Longest word of the string is: " + wordArr.join(" - "));
+}
+longestWord("Asta ddddddd casá tu casa malo hola dou ñiañiañia tresseisd")
