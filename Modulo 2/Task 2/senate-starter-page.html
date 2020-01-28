@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav>
-        <div>
-            <div>
-                <a href="#">TGIF</a>
-            </div>
-            <ul >
-                <li><a href="#">Home</a></li>
-                <li >
-                    <a href="#">Congress 113</a>
-                    <ul >
-                        <li><a href="#">Senate</a></li>
-                        <li><a href="#">House</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container border">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle bg-secondary text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Congress 113
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item bg-secondary text-white" href="#">Senate</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="house-starter-page.html">House</a>
+              </div>
+            </li>
+          </ul>
         </div>
-    </nav>        
+      </nav>
     
     
     <header>            
@@ -29,84 +30,29 @@
         </div>
     </header>
     <!--Table container-->
-    <div>
+    <div class="container">
         <h2>Senators</h2>
         <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-        <table>
+        <table id="senate-data" class="table-bordered table">
             <thead>
                 <tr>
-                    <th>Members</th>
-                    <th>First name</th>
-                    <th>Middle name</th>
-                    <th>Last name</th>
+                    <th>Name</th>
                     <th>Party</th>
-                    <th>Total votes</th>
+                    <th>State</th>
+                    <th>Years in office</th>
+                    <th>% Votes w/ Party</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Lamar</td>
-                    <td></td>
-                    <td>Alexander</td>
-                    <td>R</td>
-                    <td>657</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kelly</td>
-                    <td>null</td>
-                    <td>Ayotte</td>
-                    <td>R</td>
-                    <td>657</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Roy</td>
-                    <td></td>
-                    <td>Blunt</td>
-                    <td>R</td>
-                    <td>657</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Barbara</td>
-                    <td>null</td>
-                    <td>Boxer</td>
-                    <td>D</td>
-                    <td>657</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Sherrod</td>
-                    <td></td>
-                    <td>Brown</td>
-                    <td>D</td>
-                    <td>657</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Richard</td>
-                    <td>M.</td>
-                    <td>Burr</td>
-                    <td>R</td>
-                    <td>657</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Tammy</td>
-                    <td>null</td>
-                    <td>Baldwin</td>
-                    <td>D</td>
-                    <td>657</td>
-                </tr>
+
             </tbody>
+            
         </table>
     </div>
-    <pre id="senate-data"></pre>
     <script src="js/pro-congress-113-senate.js"></script>
-    <script>
-        document.getElementById("senate-data").innerHTML = JSON.stringify(data, null, 2)
-    </script>    
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
