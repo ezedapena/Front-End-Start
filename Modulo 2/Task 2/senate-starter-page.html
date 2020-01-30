@@ -7,9 +7,8 @@
 
 <body>
   <header class="container d-flex flex-row justify-content-between align-items-center mt-2">            
-    <span> <a class="badge badge-pill badge-light" href="index.html"> <h1><i class="fas fa-search"></i>TGIF</h1></a> </span>
-    <a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment" target="_blank"> https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment </a>
-    <span> <a href="mailto:info@tgif.net" class="badge badge-pill badge-light"><i class="fas fa-envelope"> info@tgif.net</a></i></span>
+    <a class="badge badge-pill badge-light d-flex flex-row align-items-center" href="">  <i class="fas fa-search" id="searchIcon"></i> <h1>TGIF</h1></a>
+    <span> <a href="mailto:info@tgif.net" class="badge badge-pill badge-light"><i class="fas fa-envelope" id="emailIcon"> info@tgif.net</a></i></span>
   </header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light container border my-2">
     <ul class="navbar-nav mr-auto">
@@ -34,6 +33,29 @@
 <main class="container">
   <h2>Senators</h2>
   <p class="col-8"> First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+  <section id="filters">
+    <label>
+      Filter by party:
+  </label>
+      <label>
+        <input type="checkbox" value="R" class="congress" id="rep" checked>
+        Republican
+      </label>
+      <label>
+        <input type="checkbox" value="D" class="congress" id="dem" checked>
+        Democrat
+      </label>
+      <label>
+        <input type="checkbox" value="I" class="congress" id="ind" checked>
+        Independent
+      </label>
+      <label>
+        <select id="select">
+          <option value="All">All</option>
+        </select>
+      </label>
+  
+  </section>
   <table id="senate-data" class="table-hover table">
     <thead>
       <tr>
@@ -51,7 +73,7 @@
   </table>
 </main>
 <footer class="bg-light container border text-center mb-1 py-2">
-  &#169; 2016 TGIF | All RIghts Reserver
+  &#169; 2020 TGIF | All RIghts Reserver
   
 </footer>
 <script src="js/pro-congress-113-senate.js"></script>

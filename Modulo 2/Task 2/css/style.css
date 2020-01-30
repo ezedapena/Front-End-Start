@@ -7,3 +7,10 @@ p::first-letter{
     width: 50vw;
     height: 50vh;
 }
+
+#searchIcon{
+    font-size: 35px;
+}
+#emailIcon{
+    font-size: 15px;
+}
