@@ -7,13 +7,13 @@ var aux = ""
 var states =[]
 members.forEach(member =>{
     if ( states.indexOf(member.state) == (-1)){
-       states.push(member.state)
+        states.push(member.state)
     }
+    
+})
 
-         })
-
-    for(let i= 0; i<states.length; i++)
-     select.innerHTML +=`<option value="${states[i]}">${states[i]}</option>`
+for(let i= 0; i<states.length; i++)
+select.innerHTML +=`<option value="${states[i]}">${states[i]}</option>`
 
 function functionFilter(){
     tbody.innerHTML = ""
@@ -26,11 +26,11 @@ function functionFilter(){
                 aux = members.filter(e => e.party == check[i].value && e.state == select.value)
             }
             aux.forEach(member => {
-
+                
                 let row = tbody.insertRow(-1);
                 let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
                 fullname = (member.url != "" ? `<a href="`+ member.url + `">` + fullname + `</a>` : fullname )
-                 
+                
                 row.innerHTML = `
                 <td> ${fullname}</td>
                 <td>${member.party} </td>
@@ -38,8 +38,8 @@ function functionFilter(){
                 <td>${member.seniority} </td>
                 <td> ${member.votes_with_party_pct}\%\</td>
                 `
-
-              
+                
+                
             })
             
         }
@@ -52,4 +52,3 @@ document.getElementById("select").addEventListener("change", functionFilter)
 functionFilter()
 
 
- 
