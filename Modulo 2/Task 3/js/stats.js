@@ -50,7 +50,7 @@ members.forEach(member =>
         innerTable(tableLeast , "leastEngaged" , "missed_votes", "missed_votes_pct" , 1)
         
         
-    }else if ( loyalId ){
+    }else{
         
         let loyals = members.slice().sort(function (a, b) {
             return a.votes_with_party_pct - b.votes_with_party_pct
@@ -86,7 +86,7 @@ members.forEach(member =>
             let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
             fullname = (member.url != "" ? `<a href="`+ member.url + `">` + fullname + `</a>` : fullname )
             let fieldOne = ""
-            boolean == 0 ? fieldOne = ( member[pct] * member[number] / 100 ) : fieldOne = member[number] ;
+            boolean == 0 ? fieldOne = ( member[pct] * member[number] / 100 ).toFixed(0) : fieldOne = member[number] ;
             row.innerHTML = `
             <td> ${fullname}</td>
             <td> ${fieldOne} </td>
