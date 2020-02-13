@@ -66,45 +66,77 @@
       </label>
       <label>
         <input type="checkbox" value="R" class="congress" id="rep" checked>
-        Republican
-        <input type="checkbox" value="D" class="congress" id="dem" checked>
-        Democrat
-        <input type="checkbox" value="I" class="congress" id="ind" checked>
-        Independent
-      </label>
-      <span class="d-flex justify-content-end">
+        Republican</label>
         <label>
-          States: </label>
-          <select id="select">
-            <option value="All">All</option>
-          </select>
-        </span>
-      </section>
-      <table id="senate-data" class="table-hover table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Party</th>
-            <th>State</th>
-            <th>Years in office</th>
-            <th>% Votes w/ Party</th>
-          </tr>
-        </thead>
-        <tbody id="table-data">
+          <input type="checkbox" value="D" class="congress" id="dem" checked>
+          Democrat</label>
+          <label>
+            <input type="checkbox" value="I" class="congress" id="ind" checked>
+            Independent
+          </label>
+          <span class="d-flex justify-content-end">
+            <label>
+              States: </label>
+              <select id="select">
+                <option value="All">All</option>
+              </select>
+            </span>
+          </section>
+          <div id="app">
+            <table id="senate-data" class="table-hover table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Party</th>
+                  <th>State</th>
+                  <th>Years in office</th>
+                  <th>% Votes w/ Party</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="member in members">
+                  <template v-if="(member.url != '')">
+                    <td><a v-bind:href="member.url"> {{toFullname(member)}}</a></td>
+                  </template>
+                  <template v-else>
+                    <td>{{toFullname(member)}}</td>
+                  </template>
+                  <td>{{member.party}}</td>
+                  <td>{{member.state}}</td>
+                  <td>{{member.seniority}}</td>
+                  <td>{{member.votes_with_party_pct}}%</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <table id="senate-data" class="table-hover table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Party</th>
+                <th>State</th>
+                <th>Years in office</th>
+                <th>% Votes w/ Party</th>
+              </tr>
+            </thead>
+            <tbody id="table-data">
+              
+            </tbody>
+            
+          </table> -->
+        </main>
+        <footer class="bg-light container border text-center mb-1 py-2">
+          &#169; 2020 TGIF | All RIghts Reserver
           
-        </tbody>
+        </footer>
+        <!-- <script src="js/pro-congress-113-house.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="js/main.js"></script>
         
-      </table>
-    </main>
-    <footer class="bg-light container border text-center mb-1 py-2">
-      &#169; 2020 TGIF | All RIghts Reserver
-      
-    </footer>
-    <!-- <script src="js/pro-congress-113-house.js"></script> -->
-    <script src="js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/41e75fc3b1.js" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-  </html>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/41e75fc3b1.js" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </body>
+      </html>

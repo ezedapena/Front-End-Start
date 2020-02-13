@@ -3,11 +3,12 @@ let data
 const tbody = document.querySelector("tbody")
 
 const select = document.querySelector("select")
+const senate = document.querySelector('#senate')
+const collapseButton = document.querySelector("#buttonCollapse")
 
 
 var aux = ""
-const url = "https://api.propublica.org/congress/v1/113/senate/members.json"
-
+const url =  (senate != undefined ) ? "https://api.propublica.org/congress/v1/113/senate/members.json" : "https://api.propublica.org/congress/v1/113/house/members.json" ;
 let init = {
     method: 'GET',
     headers: {
@@ -81,8 +82,15 @@ function functionFilter(){
     }
 }
 
-
-document.getElementById("rep").addEventListener("click",functionFilter)
-document.getElementById("dem").addEventListener("click",functionFilter)
-document.getElementById("ind").addEventListener("click",functionFilter)
-document.getElementById("select").addEventListener("change", functionFilter)
+function collapse(){
+    collapseButton.innerText == "Read more" ? collapseButton.innerText = "Read less" : collapseButton.innerText = "Read more"
+}
+if(document.getElementById("index")){
+    collapseButton.addEventListener("click", collapse)
+  
+}else{
+    document.getElementById("rep").addEventListener("click",functionFilter)
+    document.getElementById("dem").addEventListener("click",functionFilter)
+    document.getElementById("ind").addEventListener("click",functionFilter)
+    document.getElementById("select").addEventListener("change", functionFilter)
+}
