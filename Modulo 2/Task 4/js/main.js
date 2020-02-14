@@ -2,7 +2,6 @@ var states =[]
 // let data
 // const tbody = document.querySelector("tbody")
 
-// const select = document.querySelector("select")
 const senate = document.querySelector('#senate')
 // const collapseButton = document.querySelector("#buttonCollapse")
 
@@ -19,9 +18,11 @@ const app = new Vue({
             }
         },
         members:[],
-        partys:[],
-
-
+        parties:[],
+        states:[],
+        selected: "All",
+        
+        
     },
     created(){
         fetch(this.url,this.init).then(function(res){
@@ -33,51 +34,60 @@ const app = new Vue({
         })
         .then(function(json){
             app.members = json.results[0].members
-            console.log(app.members)
+            app.statesFilter()  
+            // app.parties = app.getKeyValue(app.members,"checkedParty")
         })
+        
+        
+        //catch va al final del created
         .catch(function(error){
             console.log(error)
         })
-        app.members.forEach(member =>{
-            if ( states.indexOf(member.state) == (-1)){
-                states.push(member.state)
-            }
-            
-        })
-
     },
     methods:{
         toFullname: function(member){
             let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
             return fullname;
         },
-
+        statesFilter: function(){
+            app.members.forEach(member =>{
+                if( app.parties.indexOf(member.party) == (-1)){
+                    app.parties.push(member.party)
+                }
+                if ( app.states.indexOf(member.state) == (-1)){
+                    app.states.push(member.state)
+                }
+            })
+            
+        },
+        
     },
     computed:{
         filterMembers(){
-            return this.members.filter(e => app.partys.includes(e.party))
+
+            if ( this.selected == "All"){
+                return this.members.filter(e => app.parties.includes(e.party))
+            }else{
+                return this.members.filter(e => app.parties.includes(e.party) && e.state == this.selected)
+            }
+           
         }
     }
-
+    
 })
 
 
 // async function getData(url , init){
 //     await 
 //     members = data.results[0].members
-//     members.forEach(member =>{
-//         if ( states.indexOf(member.state) == (-1)){
-//             states.push(member.state)
-//         }
-        
-//     })
-    
+//     
+
 //     for(let i= 0; i<states.length; i++)
 //     select.innerHTML +=`<option value="${states[i]}">${states[i]}</option>`
-    
+
 //     functionFilter()
-    
-    
+
+
 //     //FIN ASYNC
 // }
 // getData( url, init);
@@ -90,17 +100,13 @@ const app = new Vue({
 //     let check = document.getElementsByClassName("congress");
 //     for(let i = 0 ; i < check.length ; i++){
 //         if(check[i].checked){
-//             if ( select.value == "All"){
-//                 aux = members.filter(e => e.party == check[i].value)
-//             }else{
-//                 aux = members.filter(e => e.party == check[i].value && e.state == select.value)
-//             }
+//          
 //             aux.forEach(member => {
-                
+
 //                 let row = tbody.insertRow(-1);
 //                 let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
 //                 fullname = (member.url != "" ? `<a href="`+ member.url + `">` + fullname + `</a>` : fullname )
-                
+
 //                 row.innerHTML = `
 //                 <td> ${fullname}</td>
 //                 <td>${member.party} </td>
@@ -108,10 +114,10 @@ const app = new Vue({
 //                 <td>${member.seniority} </td>
 //                 <td> ${member.votes_with_party_pct}\%\</td>
 //                 `
-                
-                
+
+
 //             })
-            
+
 //         }
 //     }
 // }
@@ -121,7 +127,7 @@ const app = new Vue({
 // }
 // if(document.getElementById("index")){
 //     collapseButton.addEventListener("click", collapse)
-    
+
 // }else{
 //     document.getElementById("rep").addEventListener("click",functionFilter)
 //     document.getElementById("dem").addEventListener("click",functionFilter)
