@@ -6,137 +6,120 @@ const attendanceId = document.querySelector("#Attendance")
 const senate = document.querySelector('#senate')
 
 const url =  (senate != undefined ) ? "https://api.propublica.org/congress/v1/113/senate/members.json" : "https://api.propublica.org/congress/v1/113/house/members.json" ;
- 
-let init = {
-    method: 'GET',
-    headers: {
-        "X-API-Key": "4muVhYCCuzr0T6UBB0e6h7cyn589EEJofWWPld1f"
-    }
-}
 
-async function getData(url , init){
-    await fetch(url,init).then(function(res){
-        if(res.ok){
-            return res.json();
-        }else{
-            throw new Error(error.status);
-        }
-    })
-    .then(function(json){
-        data = json
-    })
-    .catch(function(error){
-        console.log(error)
-    })
+const app = new Vue({
+    el: '#app',
+    data:{
+        url : (senate != undefined ) ? "https://api.propublica.org/congress/v1/113/senate/members.json" : "https://api.propublica.org/congress/v1/113/house/members.json",
+        init: { 
+            method: 'GET',
+            headers: {
+                "X-API-Key": "4muVhYCCuzr0T6UBB0e6h7cyn589EEJofWWPld1f"
+            }
 
-    members = data.results[0].members
-    members.filter(e => e.total_votes > 0)
-    stats = {
-        total : ["Total", members.length , 0 ],
-        democrats : ["Democrats", 0 , 0 ],
-        republicans : ["Republicans",0 , 0 ],
-        independents : ["Independent",0 , 0],
+        },
+        stats:[
+            {
+                party: "Democrats" ,
+                numberOfReps: 0 ,
+                votedWithParty: 0,
+
+            },
+            {
+                party: "Republicans" ,
+                numberOfReps: 0,
+                votedWithParty: 0,
+            },
+            {
+                party: "Independents",
+                numberOfReps: 0,
+                votedWithParty: 0,
+            },
+            {
+                party: "Total",
+                numberOfReps: 0,
+                votedWithParty: 0,
+            }
+
+        ],
         leastLoyal : [],
         mostLoyal : [],
         mostEngaged : [],
         leastEngaged : [],
-        
-    }
-
-    members.forEach(member =>
-        {
-            if(member.party== "D"){
-                stats.democrats[1]++
-                stats.democrats[2] += member.votes_with_party_pct
-            }else if(member.party == "R"){
-                stats.republicans[1]++
-                stats.republicans[2] += member.votes_with_party_pct
+    },
+    created(){
+        fetch(this.url,this.init).then(function(res){
+            if(res.ok){
+                return res.json();
             }else{
-                stats.independents[1]++
-                stats.independents[2] += member.votes_with_party_pct
+                throw new Error(error.status);
             }
         })
-        //STATS
-        stats.total[2] = (stats.democrats[2] + stats.republicans[2] + stats.independents[2])  / members.length
-
-        innerGlance(stats.democrats)
-        innerGlance(stats.republicans)
-        innerGlance(stats.independents) 
-        document.querySelector("#glance").insertRow(-1).innerHTML = `<td>${stats.total[0]}</td><td>${stats.total[1]}</td><td>${stats.total[2].toFixed(2)}\%\</td>`
-        
-        if (attendanceId){
-            let engages = members.slice().sort(function (a, b) {
-                return a.missed_votes_pct - b.missed_votes_pct 
-            });
-            pushArray10Percent(engages , stats.mostEngaged ,"missed_votes_pct" );
-            engages.reverse();
-            pushArray10Percent(engages , stats.leastEngaged ,"missed_votes_pct" );
-            innerTable(tableMost, "mostEngaged" , "missed_votes","missed_votes_pct", 1 )
-            innerTable(tableLeast , "leastEngaged" , "missed_votes", "missed_votes_pct" , 1)
-            
-            
-        }else{
-            
-            let loyals = members.slice().sort(function (a, b) {
-                return a.votes_with_party_pct - b.votes_with_party_pct
-            });
-            pushArray10Percent( loyals , stats.leastLoyal , "votes_with_party_pct");
-            loyals.reverse();
-            pushArray10Percent( loyals , stats.mostLoyal , "votes_with_party_pct");
-            innerTable(tableMost, "mostLoyal" , "total_votes","votes_with_party_pct" , 0 )
-            innerTable(tableLeast , "leastLoyal" , "total_votes", "votes_with_party_pct" , 0)
-            
-        }
-     
-
-
-//FIN ASYNC    
-}
-getData(url , init);
-
-
+        .then(function(json){
+            app.members = json.results[0].members
+             app.members = app.members.filter(e => e.total_votes > 0)
+            app.glanceMath()
+            if (attendanceId){
+                let engages = app.members.slice().sort(function (a, b) {
+                    return a.missed_votes_pct - b.missed_votes_pct 
+                });
+                app.pushArray10Percent(engages , app.mostEngaged ,"missed_votes_pct" );
+                engages.reverse();
+                app.pushArray10Percent(engages , app.leastEngaged ,"missed_votes_pct" );
     
     
-    function innerGlance (party){
-        party[1] != 0 ? party[2] /= party[1] : party[2] = 0 ;
-        let row = document.querySelector("#glance").insertRow(-1);
-        row.innerHTML = `<td>${party[0]}</td><td>${party[1]}</td><td>${party[2].toFixed(2)}\%\</td>`
-    } 
-
-    
-    
-    function pushArray10Percent(array , pushedArray , prop){
-        let pct10 = array.length * 0.1
-        let j = 0
-        do{
-            if( array[j].total_votes > 0){
-                pushedArray.push(array[j]);
             }else{
-                pct10 += 1
+    
+                let loyals = app.members.slice().sort(function (a, b) {
+                    return a.votes_with_party_pct - b.votes_with_party_pct
+                });
+                app.pushArray10Percent( loyals , app.leastLoyal , "votes_with_party_pct");
+                loyals.reverse();
+               app.pushArray10Percent( loyals , app.mostLoyal , "votes_with_party_pct");
+    
             }
-            j++
             
-        }while( j < pct10 || array[j][prop] == array[j-1][prop] )
+            
+        })
+    },
+    methods:{
+        glanceMath: function(){
+            app.members.forEach(member =>
+                {
+                    if(member.party== "D"){
+                        app.stats[0].numberOfReps++
+                        app.stats[0].votedWithParty += member.votes_with_party_pct
+                    }else if(member.party == "R"){
+                        app.stats[1].numberOfReps++
+                        app.stats[1].votedWithParty += member.votes_with_party_pct
+                    }else{
+                        app.stats[2].numberOfReps++
+                        app.stats[2].votedWithParty += member.votes_with_party_pct
+                    }
+                })
+                //STATS , PERDON MUCHACHOS NI YO SE QUE HICE... PERO FUNCIONA
+                 app.stats[0].votedWithParty > 0  ? app.stats[0].votedWithParty /= app.stats[0].numberOfReps : null 
+                 app.stats[1].votedWithParty > 0  ? app.stats[1].votedWithParty /= app.stats[1].numberOfReps : null 
+                 app.stats[2].votedWithParty > 0  ? app.stats[2].votedWithParty /= app.stats[2].numberOfReps : null 
+                app.stats[3].votedWithParty = (app.stats[0].votedWithParty * app.stats[0].numberOfReps + app.stats[1].votedWithParty * app.stats[1].numberOfReps + app.stats[2].votedWithParty * app.stats[2].numberOfReps)  / app.members.length
+                app.stats[3].numberOfReps = app.members.length
+        },
+        pushArray10Percent: function (array , pushedArray , prop){
+            let pct10 = array.length * 0.1
+            let i = 0
+            do{
+                pushedArray.push(array[i]);
+                i++
+            }while(i< pct10 || array[i][prop] == array[i+1][prop])
+            
+    
+        },
+        calc: function(member ){
+             return ( member.total_votes * member.votes_with_party_pct / 100 ).toFixed(0) 
+          
+        }
+           
         
+
     }
-    
-    
-    function innerTable(tableId , pushedArray , number , pct , boolean){
-        stats[pushedArray].forEach(member => {
-            let row = tableId.insertRow(-1);
-            let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
-            fullname = (member.url != "" ? `<a href="`+ member.url + `">` + fullname + `</a>` : fullname )
-            let fieldOne = ""
-            boolean == 0 ? fieldOne = ( member[pct] * member[number] / 100 ).toFixed(0) : fieldOne = member[number] ;
-            row.innerHTML = `
-            <td> ${fullname}</td>
-            <td> ${fieldOne} </td>
-            <td> ${member[pct]}\%\</td>`
-        });
-    }
-    
-    
-    
-    
-    
-    
+})

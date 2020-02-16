@@ -23,7 +23,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Senate</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="house-starter-page.html">House</a>
+          <a class="dropdown-item" href="house-page.html">House</a>
         </div>
       </li>
       <!-- Attendance-->
@@ -53,69 +53,91 @@
   
   <!--Table container-->
   <main class="container">
-    <div class="row">
-      <div class="col">
-        <h2 id="LoyalId">Party Loyalty</h2>
-        <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
+    <div id="app">
+      <div class="row">
+        <div class="col"> 
+          <h2 id="LoyalId">Party Loyalty</h2>
+          <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+          
+          <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+        </div>
+        <div class="col">  
+          <h2>Senate at a glance</h2>
+          <table class="table border-1">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th>Number of Reps</th>
+                <th>% Voted with Prty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="index in stats">
+                <th>{{index.party}}</th>
+                <th>{{index.numberOfReps}}</th>
+                <th>{{index.votedWithParty.toFixed(2)}}%</th>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="col">
-        <h2>Senate at a glance</h2>
-        <table class="table">
-          <thead class="table">
-            <tr>
-              <th>Party</th>
-              <th>Number of Reps</th>
-              <th>% Voted with Prty</th>
-            </tr>
-          </thead>
-          <tbody id="glance">
-            
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h2>Least Loyal (Bottom 10% of Party)</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Number Party Votes</th>
-              <th>% Party Votes</th>
-            </tr>
-          </thead>
-          <tbody id="tableLeast">
-            
-          </tbody>
-        </table>
-      </div>
-      <div class="col">
-        <h2>Most Loyal (Top 10% of Party)</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Number Party Votes</th>
-              <th>% Party Votes</th>
-            </tr>
-          </thead>
-          <tbody id="tableMost">
-            
-          </tbody>
-        </table>
-      </div>
+      <div class="dropdown-divider"></div>
+      <div class="row"> 
+        <div class="col">
+          <h2>Least loyal (Bottom 10% of Party)</h2>
+          <table class="table border-1">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Number of Party Votes</th>
+                <th>% Party Votes</th>
+              </tr>
+            </thead>
+            <tbody id="tableLeast">
+              <tr v-for="index in leastLoyal">
+                <td>{{index.first_name}} {{index.middle_name}} {{index.last_name}}</td>
+                <td>{{calc(index)}}</td>
+                <td>{{index.votes_with_party_pct}}%</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="col">
+          <h2>Most Loyal (Top 10% of Party)</h2>
+          <table class="table border-1">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Number of Party Votes</th>
+                <th>% Party Votes</th>
+              </tr>
+            </thead>
+            <tbody id="tableMost">
+              <tr v-for="index in mostLoyal">
+                <td>{{index.first_name}} {{index.middle_name}} {{index.last_name}}</td>
+                <td>{{calc(index)}}</td>
+                <td>{{index.votes_with_party_pct}}%</td>
+
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>	 
     </div>
   </main>
   <footer class="bg-light container border text-center mb-1 py-2">
     &#169; 2020 TGIF | All RIghts Reserver
     
   </footer>
-  <!-- <script src="js/pro-congress-113-senate.js"></script> -->
-  <script src="js/stats.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/41e75fc3b1.js" crossorigin="anonymous"></script>
+  <script src="js/stats.js"></script>
 </body>
 </html>

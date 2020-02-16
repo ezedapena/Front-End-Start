@@ -1,9 +1,5 @@
 var states =[]
-// let data
-// const tbody = document.querySelector("tbody")
-
 const senate = document.querySelector('#senate')
-// const collapseButton = document.querySelector("#buttonCollapse")
 
 
 var aux = ""
@@ -35,7 +31,7 @@ const app = new Vue({
         .then(function(json){
             app.members = json.results[0].members
             app.statesFilter()  
-            // app.parties = app.getKeyValue(app.members,"checkedParty")
+            
         })
         
         
@@ -45,10 +41,6 @@ const app = new Vue({
         })
     },
     methods:{
-        toFullname: function(member){
-            let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
-            return fullname;
-        },
         statesFilter: function(){
             app.members.forEach(member =>{
                 if( app.parties.indexOf(member.party) == (-1)){
@@ -75,62 +67,3 @@ const app = new Vue({
     }
     
 })
-
-
-// async function getData(url , init){
-//     await 
-//     members = data.results[0].members
-//     
-
-//     for(let i= 0; i<states.length; i++)
-//     select.innerHTML +=`<option value="${states[i]}">${states[i]}</option>`
-
-//     functionFilter()
-
-
-//     //FIN ASYNC
-// }
-// getData( url, init);
-
-
-
-
-// function functionFilter(){
-//     tbody.innerHTML = ""
-//     let check = document.getElementsByClassName("congress");
-//     for(let i = 0 ; i < check.length ; i++){
-//         if(check[i].checked){
-//          
-//             aux.forEach(member => {
-
-//                 let row = tbody.insertRow(-1);
-//                 let fullname = member.first_name + " " + ( member.middle_name ||  "" ) + " " + member.last_name
-//                 fullname = (member.url != "" ? `<a href="`+ member.url + `">` + fullname + `</a>` : fullname )
-
-//                 row.innerHTML = `
-//                 <td> ${fullname}</td>
-//                 <td>${member.party} </td>
-//                 <td> ${member.state}</td>
-//                 <td>${member.seniority} </td>
-//                 <td> ${member.votes_with_party_pct}\%\</td>
-//                 `
-
-
-//             })
-
-//         }
-//     }
-// }
-
-// function collapse(){
-//     collapseButton.innerText == "Read more" ? collapseButton.innerText = "Read less" : collapseButton.innerText = "Read more"
-// }
-// if(document.getElementById("index")){
-//     collapseButton.addEventListener("click", collapse)
-
-// }else{
-//     document.getElementById("rep").addEventListener("click",functionFilter)
-//     document.getElementById("dem").addEventListener("click",functionFilter)
-//     document.getElementById("ind").addEventListener("click",functionFilter)
-//     document.getElementById("select").addEventListener("change", functionFilter)
-// }
