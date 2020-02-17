@@ -95,10 +95,15 @@
               </tr>
             </thead>
             <tbody id="tableLeast">
-              <tr v-for="index in leastLoyal">
-                <td>{{index.first_name}} {{index.middle_name}} {{index.last_name}}</td>
-                <td>{{calc(index)}}</td>
-                <td>{{index.votes_with_party_pct}}%</td>
+              <tr v-for="member in leastLoyal">
+                <template v-if="(member.url != '')">
+                  <td><a v-bind:href="member.url"> {{member.first_name}} {{member.middle_name}} {{member.last_name}}</a></td>
+                </template>
+                <template v-else>
+                  <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                </template>
+                <td>{{calc(member)}}</td>
+                <td>{{member.votes_with_party_pct}}%</td>
               </tr>
               
             </tbody>
@@ -116,10 +121,15 @@
               </tr>
             </thead>
             <tbody id="tableMost">
-              <tr v-for="index in mostLoyal">
-                <td>{{index.first_name}} {{index.middle_name}} {{index.last_name}}</td>
-                <td>{{calc(index)}}</td>
-                <td>{{index.votes_with_party_pct}}%</td>
+              <tr v-for="member in mostLoyal">
+                <template v-if="(member.url != '')">
+                  <td><a v-bind:href="member.url"> {{member.first_name}} {{member.middle_name}} {{member.last_name}}</a></td>
+                </template>
+                <template v-else>
+                  <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                </template>
+                <td>{{calc(member)}}</td>
+                <td>{{member.votes_with_party_pct}}%</td>
 
               </tr>
               

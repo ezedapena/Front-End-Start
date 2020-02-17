@@ -97,10 +97,15 @@
               </tr>
             </thead>
             <tbody id="tableLeast">
-              <tr v-for="index in leastEngaged">
-                <td>{{index.first_name}} {{index.middle_name}} {{index.last_name}}</td>
-                <td>{{index.missed_votes}}</td>
-                <td>{{index.missed_votes_pct}}%</td>
+              <tr v-for="member in leastEngaged">
+                <template v-if="(member.url != '')">
+                  <td><a v-bind:href="member.url"> {{member.first_name}} {{member.middle_name}} {{member.last_name}}</a></td>
+                </template>
+                <template v-else>
+                  <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                </template>
+                <td>{{member.missed_votes}}</td>
+                <td>{{member.missed_votes_pct}}%</td>
               </tr>
               
             </tbody>
@@ -118,10 +123,15 @@
               </tr>
             </thead>
             <tbody id="tableMost">
-              <tr v-for="index in mostEngaged">
-                <td>{{index.first_name}} {{index.middle_name}} {{index.last_name}}</td>
-                <td>{{index.missed_votes}}</td>
-                <td>{{index.missed_votes_pct}}%</td>
+              <tr v-for="member in mostEngaged">
+                <template v-if="(member.url != '')">
+                  <td><a v-bind:href="member.url"> {{member.first_name}} {{member.middle_name}} {{member.last_name}}</a></td>
+                </template>
+                <template v-else>
+                  <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                </template>
+                <td>{{member.missed_votes}}</td>
+                <td>{{member.missed_votes_pct}}%</td>
 
               </tr>
               

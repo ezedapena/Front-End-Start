@@ -5,7 +5,7 @@ const loyalId = document.querySelector("#Loyal")
 const attendanceId = document.querySelector("#Attendance")
 const senate = document.querySelector('#senate')
 
-const url =  (senate != undefined ) ? "https://api.propublica.org/congress/v1/113/senate/members.json" : "https://api.propublica.org/congress/v1/113/house/members.json" ;
+// const url =  (senate != undefined ) ? "https://api.propublica.org/congress/v1/113/senate/members.json" : "https://api.propublica.org/congress/v1/113/house/members.json" ;
 
 const app = new Vue({
     el: '#app',
@@ -46,6 +46,7 @@ const app = new Vue({
         mostLoyal : [],
         mostEngaged : [],
         leastEngaged : [],
+        filteredMembers : [],
     },
     created(){
         fetch(this.url,this.init).then(function(res){
@@ -57,10 +58,10 @@ const app = new Vue({
         })
         .then(function(json){
             app.members = json.results[0].members
-             app.members = app.members.filter(e => e.total_votes > 0)
+             filteredMembers = app.members.filter(e => e.total_votes > 0)
             app.glanceMath()
             if (attendanceId){
-                let engages = app.members.slice().sort(function (a, b) {
+                let engages = filteredMembers.slice().sort(function (a, b) {
                     return a.missed_votes_pct - b.missed_votes_pct 
                 });
                 app.pushArray10Percent(engages , app.mostEngaged ,"missed_votes_pct" );
@@ -70,7 +71,7 @@ const app = new Vue({
     
             }else{
     
-                let loyals = app.members.slice().sort(function (a, b) {
+                let loyals = filteredMembers.slice().sort(function (a, b) {
                     return a.votes_with_party_pct - b.votes_with_party_pct
                 });
                 app.pushArray10Percent( loyals , app.leastLoyal , "votes_with_party_pct");
