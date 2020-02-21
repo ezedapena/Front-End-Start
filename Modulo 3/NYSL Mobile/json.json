@@ -1,0 +1,46 @@
+{
+ "teams" :[
+   {
+     "id" : "team1",
+     "name" : "Puñetas FC",
+     "logo" : ""
+     
+   },
+   {
+    "id" :"team2",
+    "name" : "CA Gextox",
+    "logo" : ""
+   },
+   {
+    "id" : "team3",
+    "name" : "Zekebrado FC",
+    "logo" : ""
+   },
+   {
+    "id" : "team4",
+    "name" : "White Listed",
+    "logo" : ""
+   },
+   {
+    "id"  : "team5",
+    "name" : "Banneds Bros FC",
+    "logo" : ""
+   },
+   {
+    "id" : "team6",
+    "name" : "Kus Ota",
+    "logo" : ""
+   },
+   {
+    "id" : "team7",
+    "name" : "Lil Start",
+    "logo" : ""
+   },
+   {
+    "id"  : "team8",
+    "name" : "Sherminators",
+    "logo" : ""
+   }
+ ]  
+  
+}
